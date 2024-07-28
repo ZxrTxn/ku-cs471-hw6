@@ -10,23 +10,29 @@ public class DuckSimulator {
     }
 
     void simulate() {
-        Quackable mallardDuck = new QuackCounter(new MallardDuck());
-        Quackable redheadDuck = new QuackCounter(new RedheadDuck());
-        Quackable duckCall = new QuackCounter(new DuckCall());
-        Quackable rubberDuck = new QuackCounter(new RubberDuck());
+        Quackable mallardDuck = new QuackCounter(new PoliteDuck(new MallardDuck()));
+        Quackable redheadDuck = new RedheadDuck();
+        Quackable duckCall = new DuckCall();
+        Quackable rubberDuck = new QuackCounter(new PoliteDuck(new RubberDuck()));
         Quackable gooseDuck = new GooseAdapter(new Goose());
-        Quackable pigeonDuck = new PigeonAdapter(new Pigeon());
+        Quackable pigeonDuck = new PoliteDuck(new PigeonAdapter(new Pigeon()));
 
         System.out.println("\nDuck Simulator: With Decorator");
 
         simulate(mallardDuck);
+        System.out.println();
         simulate(redheadDuck);
+        System.out.println();
         simulate(duckCall);
+        System.out.println();
         simulate(rubberDuck);
+        System.out.println();
         simulate(gooseDuck);
+        System.out.println();
         simulate(pigeonDuck);
+        System.out.println();
 
-        System.out.println("The ducks quacked " +
+        System.out.println("The polite ducks quacked " +
                             QuackCounter.getQuacks() + " times");
     }
 
